@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>EcoClass Home</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #e1e5ea);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #6a11cb;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        nav .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #575757;
+            border-radius: 5px;
+        }
+
+        .sign-out {
+            background: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .sign-out:hover {
+            background: #c9302c;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        section {
+            display: none; /* All sections are hidden by default */
+            text-align: center;
+        }
+
+        section.active {
+            display: block; /* Only the active section is shown */
+        }
+
+        .wifi-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .wifi-form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .wifi-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .wifi-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .wifi-form button:hover {
+            background: #2575fc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav .links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .sign-out {
+                width: 90%;
+                text-align: center;
+            }
+        }
+
+        .warning{
+            color: #c9302c;
+            font-weight: bold;
+        }
+        
+        tbody tr:hover {
+        background-color: #f0f4f8;
+        transform: scale(1.02); 
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the EcoClass 2k24</h1>
+        <p>Explore the features and configure your settings easily.</p>
+    </header>
+    <nav>
+        <div class="links">
+            <a href="#" onclick="showSection('wifi-config')">WiFi Configuration</a>
+            <a href="#" onclick="showSection('about')">About</a>  
+            <a href="#" onclick="showSection('contact-us')">Contact Us</a>
+            <a href="#" onclick="showSection('Setting-up')">Setting-up</a>
+        </div>
+        <button class="sign-out" onclick="signOut()">Sign Out</button>
+    </nav>
+    <div class="container">
+
+        <section id="wifi-config" class="active">
+            <h2>WiFi Configuration</h2>
+            <p>Set your new SSID (WiFi name) and new password here.</p>
+            <br>
+            <div class="wifi-form">
+                <form action="/updateCredentials" method="post">
+                    <label for="ssid">SSID:</label>
+                    <input type="text" name="ssid" id="ssid" required>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <br>
+            <p class="warning">Make sure to turn on all the devices before setting the new SSID and password.</p>
+        </section>
+
+        <section id="about" >
+            <h2>About</h2>
+            <p>
+                This innovative IoT project was developed as part of our IoT module in November 2024, under the insightful guidance of our mentor, <b>Mr. Isuru Sri Bandara.</b> Led by Kavindu Lakmal, the team worked collaboratively to create a state-of-the-art solution featuring an intuitive web dashboard for efficient monitoring and control. Our team, consisting of Ishra Rathnayake, Madhushani Hansamali, Durangi Chamathka, and Danan Uvindu, brought together diverse skills and a shared passion for technology to deliver this project. This accomplishment represents not only our dedication to mastering IoT concepts but also our commitment to creating impactful and practical innovations.
+            </p>
+                <br><br><br>
+            <h2>How this work</h2>
+            <p>
+                The EcoClass system is an interconnected network of ESP8266 microcontrollers designed to monitor and control environmental conditions across multiple units. Each sub-unit is equipped with sensors to measure temperature, humidity, gas levels, and detect motion or light status. These sub-units use static IP configurations to communicate with a central main unit over a Wi-Fi network. The main unit aggregates sensor data from the sub-units and can also send commands or updated configurations, such as Wi-Fi credentials, to the sub-units. Additionally, a dedicated display unit for showing time, also using a static IP, receives real-time data from the main unit and visually presents the current environmental readings and statuses on an OLED screen. This system ensures efficient monitoring, centralized control, and a clear visual interface for managing smart climate operations.
+            </p>
+        </section>
+
+        <section id="contact-us">
+            <h2>Contact Us</h2>
+            <p>
+                Have questions? Feel free to reach out to any of our team members below. We’re here to help!
+            </p>
+            <div style="overflow-x: auto; margin: 20px 0;">
+                <table style="width: 100%; text-align: left; font-size: 1rem; border-spacing: 0 10px;">
+                    <thead>
+                        <tr style="background-color: #f8f8f8; color: #333;">
+                            <th style="padding: 15px;">Name</th>
+                            <th style="padding: 15px;">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <td style="padding: 15px; border-radius: 8px 0 0 8px;">Kavindu Lakmal</td>
+                            <td style="padding: 15px; border-radius: 0 8px 8px 0;">
+                                <a href="kavindulakmal2000@gmail.com" style="color: #2575fc; text-decoration: none;">kavindulakmal2000@gmail.com</a>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <td style="padding: 15px; border-radius: 8px 0 0 8px;">Ishara Sathyanjalee</td>
+                            <td style="padding: 15px; border-radius: 0 8px 8px 0;">
+                                <a href="ishara.sathyanjalee@gmail.com" style="color: #2575fc; text-decoration: none;">ishara.sathyanjalee@gmail.com</a>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <td style="padding: 15px; border-radius: 8px 0 0 8px;">Madhushani Hansamali</td>
+                            <td style="padding: 15px; border-radius: 0 8px 8px 0;">
+                                <a href="madhushani.hrajakaruna@gmail.com" style="color: #2575fc; text-decoration: none;">madhushani.hrajakaruna@gmail.com</a>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <td style="padding: 15px; border-radius: 8px 0 0 8px;">Durangi Chamathka</td>
+                            <td style="padding: 15px; border-radius: 0 8px 8px 0;">
+                                <a href="chanididurangi@gmail.com" style="color: #2575fc; text-decoration: none;">chanididurangi@gmail.com</a>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <td style="padding: 15px; border-radius: 8px 0 0 8px;">Danan Uvindu</td>
+                            <td style="padding: 15px; border-radius: 0 8px 8px 0;">
+                                <a href="dananuvndu@gmail.com" style="color: #2575fc; text-decoration: none;">dananuvndu@gmail.com</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+
+        <section id="Setting-up">
+            <h2>Setting-up</h2>
+            <p>
+                Navigate through the menu to explore our features. Configure your settings in the
+                WiFi Configuration section or learn more about us in the About section.
+            </p>
+            <br><br>
+
+            <h3>Router Setting</h3>
+            <p>
+                set <br>
+                Router IP(gateway): <b>192.168.1.1</b><br>
+                SubNet Mask: <b>255.255.255.0</b><br>
+                Set router DHCP range <b>192.168.1.2</b>&nbsp;to&nbsp;<b>192.168.1.199</b><br>
+                Sub-units Static IP starts from <br>
+                <b>192.168.1.200</b>&nbsp;to&nbsp;<b>192.168.1.205</b>
+                <p class="warning">Make sure to turn on all the devices before WiFi configuration</p>
+            </p>
+
+        </section>
+    </div>
+</body>
+</html>
